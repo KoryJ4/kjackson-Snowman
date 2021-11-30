@@ -1,3 +1,4 @@
+using WordGuesser;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,14 @@ public class GameController : MonoBehaviour
     public GameObject PlayScreen;
     public UnityEngine.UI.Text Message;
     public UnityEngine.UI.Button StartButton;
+    private WordGuesser.WordGame guessingGame;
+    
     public void StartGame()
     {
-        this.Message.text = "Can you save the Snowman?";
-        this.StartButton.gameObject.SetActive(false);
+        this.guessingGame = new WordGuesser.WordGame("apple", 5);
+        Debug.Log(this.guessingGame.GetWord());
+        Debug.Log(this.guessingGame.GetFullWord());
+        
         this.StartScreen.SetActive(false);
         this.PlayScreen.SetActive(true);
     }
