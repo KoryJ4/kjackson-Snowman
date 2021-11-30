@@ -10,13 +10,20 @@ public class GameController : MonoBehaviour
     public UnityEngine.UI.Text Message;
     public UnityEngine.UI.Button StartButton;
     private WordGuesser.WordGame guessingGame;
-    
+    public UnityEngine.UI.InputField PlayerGuess;
+    public void SubmitGuess()
+    {
+        string result = this.guessingGame.CheckGuess(PlayerGuess.text);
+        Debug.Log(result);
+    }
     public void StartGame()
     {
         this.guessingGame = new WordGuesser.WordGame("apple", 5);
         Debug.Log(this.guessingGame.GetWord());
         Debug.Log(this.guessingGame.GetFullWord());
         
+        this.Message.text = "Can you save the snowman?";
+        this.StartButton.gameObject.SetActive(false);
         this.StartScreen.SetActive(false);
         this.PlayScreen.SetActive(true);
     }
