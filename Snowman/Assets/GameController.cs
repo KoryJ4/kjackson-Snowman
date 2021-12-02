@@ -15,9 +15,24 @@ public class GameController : MonoBehaviour
     public UnityEngine.UI.Text GetGuessedLetters;
     public UnityEngine.UI.Text GuessesRemaining;
     public UnityEngine.UI.Text CheckGuess;
-    public void ChangeCheckGuess(char guess)
+    public UnityEngine.UI.Text GameOver;
+    public UnityEngine.UI.Text CorrectWord;
+    public UnityEngine.UI.Text GameWon;
+    public void ChangeGameWon()
     {
-        CheckGuess.text = "Your guess is";
+        GameWon.text = this.guessingGame.GetFullWord();
+    }
+    public void ChangeCorrectWord()
+    {
+        CorrectWord.text = this.guessingGame.GetFullWord();
+    }
+    public void ChangeGameOver()
+    {
+        GameOver.text = "You Lost";
+    }
+    public void ChangeCheckGuess(string guess)
+    {
+        CheckGuess.text = "Your guess is:" + this.guessingGame.CheckGuess(guess);
     }
     public void ChangeGuessesRemaining()
     {
@@ -37,6 +52,12 @@ public class GameController : MonoBehaviour
     {
         string result = this.guessingGame.CheckGuess(PlayerGuess.text);
         Debug.Log(result);
+        this.ChangeGetGuessedLetters();
+        this.ChangeCheckGuess(PlayerGuess.text);
+        this.ChangegetWord();
+        this.ChangeGuessesRemaining();
+        this.ChangeGameOver();
+        this.ChangeCorrectWord();
     }
     public void StartGame()
     {
@@ -58,6 +79,20 @@ public class GameController : MonoBehaviour
     {
         this.StartScreen.SetActive(true);
         this.PlayScreen.SetActive(false);
+    }
+    public void isGameOver()
+    {
+        this.StartScreen.SetActive(false);
+        this.PlayScreen.SetActive(false);
+        this.GameOver.SetActive(true);
+        this.GameWon.SetActive(false);
+    }
+    public void isGameWon()
+    {
+        this.StartScreen.SetActive(false);
+        this.PlayScreen.SetActive(false);
+        this.GameOver.SetActive(false);
+        this.GameWon.SetActive(true);
     }
 }
 
