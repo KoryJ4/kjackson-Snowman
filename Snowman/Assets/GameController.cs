@@ -11,6 +11,28 @@ public class GameController : MonoBehaviour
     public UnityEngine.UI.Button StartButton;
     private WordGuesser.WordGame guessingGame;
     public UnityEngine.UI.InputField PlayerGuess;
+    public UnityEngine.UI.Text getWord;
+    public UnityEngine.UI.Text GetGuessedLetters;
+    public UnityEngine.UI.Text GuessesRemaining;
+    public UnityEngine.UI.Text CheckGuess;
+    public void ChangeCheckGuess(char guess)
+    {
+        CheckGuess.text = "Your guess is";
+    }
+    public void ChangeGuessesRemaining()
+    {
+        int remaining = this.guessingGame.GetGuessLimit() - this.guessingGame.GetIncorrectGuesses();
+        GuessesRemaining.text = $"You have {remaining} guesses remaining.";
+    }
+
+    public void ChangegetWord()
+    {
+        getWord.text = "Some Word";
+    }
+    public void ChangeGetGuessedLetters()
+    {
+        GetGuessedLetters.text = "Guessed Letters";
+    }
     public void SubmitGuess()
     {
         string result = this.guessingGame.CheckGuess(PlayerGuess.text);
